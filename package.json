@@ -1,6 +1,6 @@
 {
-	"name": "ds-library-starter",
-	"version": "1.0.0",
+	"name": "use-emitter",
+	"version": "0.0.1",
 	"description": "",
 	"main": "dist/index.cjs.js",
 	"module": "dist/index.es.js",
@@ -19,17 +19,29 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": ""
+		"url": "git+https://github.com/DejanSandic/use-emitter.git"
 	},
-	"keywords": [],
-	"author": "",
+	"author": "Dejan Sandic - Deyo",
 	"license": "MIT",
 	"bugs": {
-		"url": ""
+		"url": "https://github.com/DejanSandic/use-emitter/issues"
 	},
-	"homepage": "",
+	"homepage": "https://github.com/DejanSandic/use-emitter#readme",
+	"keywords": [
+		"react",
+		"use-emitter",
+		"event",
+		"events",
+		"socket.io",
+		"event emitter",
+		"event-jet",
+		"helper"
+	],
 	"devDependencies": {
+		"@testing-library/jest-dom": "^4.2.4",
+		"@testing-library/react": "^9.3.2",
 		"@types/jest": "^24.0.15",
+		"@types/react": "^16.9.16",
 		"eslint": "^5.16.0",
 		"eslint-config-standard": "^12.0.0",
 		"eslint-plugin-import": "^2.17.3",
@@ -40,6 +52,7 @@
 		"pre-commit": "^1.2.2",
 		"prettier-eslint": "^9.0.0",
 		"prettier-eslint-cli": "^5.0.0",
+		"react-dom": "^16.12.0",
 		"rimraf": "^2.6.3",
 		"rollup": "^1.15.6",
 		"rollup-plugin-babel": "^4.3.2",
@@ -52,5 +65,8 @@
 	"peerDependencies": {},
 	"engines": {
 		"node": ">=8"
+	},
+	"dependencies": {
+		"react": "^16.12.0"
 	}
 }
