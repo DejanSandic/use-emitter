@@ -2,40 +2,34 @@ import { createElement, createContext, useContext, useState, useEffect, ReactNod
 
 const EmitterContext = createContext({});
 
-function EmitterProvider({ children = [], emitter }: { children: ReactNode; emitter: any }) {
-	return createElement(EmitterContext.Provider, { value: emitter }, ...children);
+function EmitterProvider ({ children = [], emitter }: { children: ReactNode; emitter: any }) {
+   return createElement(EmitterContext.Provider, { value: emitter }, ...children);
 }
 
-function useEmitter() {
-	return useContext(EmitterContext);
+function useEmitter () {
+   return useContext(EmitterContext);
 }
 
-function useEvent(event: string, defaultValue?: any) {
-	const emitter: any = useContext(EmitterContext);
-	const [ data, setData ] = useState(defaultValue);
+function useEvent (event: string, defaultValue?: any) {
+   const emitter: any = useContext(EmitterContext);
+   const [data, setData] = useState(defaultValue);
 
-	useEffect(
-		() => {
-			emitter.on(event, setData);
-		},
-		[ event, defaultValue ]
-	);
+   useEffect(() => {
+      emitter.on(event, setData);
+   }, [event, defaultValue]);
 
-	return data;
+   return data;
 }
 
-useEvent.once = function(event: string, defaultValue?: any) {
-	const emitter: any = useContext(EmitterContext);
-	const [ data, setData ] = useState(defaultValue);
+useEvent.once = function (event: string, defaultValue?: any) {
+   const emitter: any = useContext(EmitterContext);
+   const [data, setData] = useState(defaultValue);
 
-	useEffect(
-		() => {
-			emitter.once(event, setData);
-		},
-		[ event, defaultValue ]
-	);
+   useEffect(() => {
+      emitter.once(event, setData);
+   }, [event, defaultValue]);
 
-	return data;
+   return data;
 };
 
 export { EmitterProvider, useEmitter, useEvent };
