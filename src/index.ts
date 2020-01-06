@@ -39,4 +39,9 @@ useEvent.once = function (event: string, defaultValue?: any, ...options: any) {
    return [data, emit];
 };
 
-export { EmitterProvider, useEmitter, useEvent };
+function useEmit (event: string) {
+   const emitter: any = useContext(EmitterContext);
+   return (data: any, ...options: any) => emitter.emit(event, data, ...options);
+}
+
+export { EmitterProvider, useEmitter, useEvent, useEmit };
