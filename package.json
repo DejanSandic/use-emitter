@@ -1,6 +1,6 @@
 {
 	"name": "use-emitter",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "",
 	"main": "dist/index.cjs.js",
 	"module": "dist/index.es.js",
@@ -13,10 +13,7 @@
 		"dev": "rollup --config --watch",
 		"lint:fix": "prettier-eslint \"src/*\" \"test/*\" --write"
 	},
-	"pre-commit": [
-		"test",
-		"lint:fix"
-	],
+	"pre-commit": [ "test", "lint:fix" ],
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/DejanSandic/use-emitter.git"
@@ -27,16 +24,7 @@
 		"url": "https://github.com/DejanSandic/use-emitter/issues"
 	},
 	"homepage": "https://github.com/DejanSandic/use-emitter#readme",
-	"keywords": [
-		"react",
-		"use-emitter",
-		"event",
-		"events",
-		"socket.io",
-		"event emitter",
-		"event-jet",
-		"helper"
-	],
+	"keywords": [ "react", "use-emitter", "event", "events", "socket.io", "event emitter", "event-jet", "helper" ],
 	"devDependencies": {
 		"@rollup/plugin-node-resolve": "^6.0.0",
 		"@testing-library/jest-dom": "^4.2.4",
