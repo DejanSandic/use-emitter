@@ -16,9 +16,9 @@ const wrapper = ({ children }: any) => <EmitterProvider emitter={emitter}>{child
  */
 console.error = () => {};
 
-describe('useEvent hook', () => {
+describe('useEvent.once hook', () => {
    test('should return an array with two items, data which is undefined and the emit function.', () => {
-      const { result } = renderHook(() => useEvent('test'), { wrapper });
+      const { result } = renderHook(() => useEvent.once('test'), { wrapper });
 
       expect(result.current.length).toBe(2);
       expect(result.current[0]).toBe(undefined);
@@ -27,7 +27,7 @@ describe('useEvent hook', () => {
 
    test('should return the default value as the data and the emit function.', () => {
       const defaultValue = 'default_value';
-      const { result } = renderHook(() => useEvent('test', defaultValue), { wrapper });
+      const { result } = renderHook(() => useEvent.once('test', defaultValue), { wrapper });
 
       expect(result.current[0]).toBe(defaultValue);
       expect(typeof result.current[1]).toBe('function');
@@ -36,9 +36,9 @@ describe('useEvent hook', () => {
    test('returned emit function should call the emit hook on the event emitter.', () => {
       const eventName = 'test';
       const testValue = 'test_value';
-      const emitter = { on: jest.fn(), emit: jest.fn() };
+      const emitter = { once: jest.fn(), emit: jest.fn() };
       const wrapper = ({ children }: any) => <EmitterProvider emitter={emitter}>{children}</EmitterProvider>;
-      const { result } = renderHook(() => useEvent(eventName), { wrapper });
+      const { result } = renderHook(() => useEvent.once(eventName), { wrapper });
 
       act(() => {
          result.current[1](testValue);
@@ -47,12 +47,12 @@ describe('useEvent hook', () => {
       expect(emitter.emit).toBeCalledWith(eventName, testValue);
    });
 
-   test('returned emit function should change the data returned from the useEvent hook.', () => {
+   test('returned emit function should not change the data returned from the useEvent hook after first invocation.', () => {
       const defaultValue = 'default_value';
       const newValue = 'new_value';
       const newValue2 = 'new_value_2';
       const wrapper = ({ children }: any) => <EmitterProvider emitter={emitter}>{children}</EmitterProvider>;
-      const { result } = renderHook(() => useEvent('test', defaultValue), { wrapper });
+      const { result } = renderHook(() => useEvent.once('test', defaultValue), { wrapper });
 
       expect(result.current[0]).toBe(defaultValue);
 
@@ -66,23 +66,23 @@ describe('useEvent hook', () => {
          result.current[1](newValue2);
       });
 
-      expect(result.current[0]).toBe(newValue2);
+      expect(result.current[0]).toBe(newValue);
    });
 
    test('shuld pass all extra arguments to the on function of the event emitter.', () => {
       const eventName = 'test';
-      const emitter = { on: jest.fn(), emit: jest.fn() };
+      const emitter = { once: jest.fn(), emit: jest.fn() };
       const wrapper = ({ children }: any) => <EmitterProvider emitter={emitter}>{children}</EmitterProvider>;
-      renderHook(() => useEvent(eventName, null, 'arg1', 'arg2'), { wrapper });
+      renderHook(() => useEvent.once(eventName, null, 'arg1', 'arg2'), { wrapper });
 
-      expect(emitter.on).toBeCalledWith(eventName, expect.anything(), 'arg1', 'arg2');
+      expect(emitter.once).toBeCalledWith(eventName, expect.anything(), 'arg1', 'arg2');
    });
 
    test('returned emit function shuld pass all extra arguments to the emit function of the event emitter.', () => {
       const eventName = 'test';
-      const emitter = { on: jest.fn(), emit: jest.fn() };
+      const emitter = { once: jest.fn(), emit: jest.fn() };
       const wrapper = ({ children }: any) => <EmitterProvider emitter={emitter}>{children}</EmitterProvider>;
-      const { result } = renderHook(() => useEvent(eventName), { wrapper });
+      const { result } = renderHook(() => useEvent.once(eventName), { wrapper });
       const [_, emit] = result.current;
 
       act(() => {

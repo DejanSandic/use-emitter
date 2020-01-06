@@ -8,12 +8,12 @@ function EmitterProvider ({ children, emitter }: { children: ReactNode; emitter:
    return createElement(EmitterContext.Provider, { value: emitter, children });
 }
 
-// Use data for the specific event emitted by the emitter
+// Use the full instance of the emitter with all of its methods.
 function useEmitter () {
    return useContext(EmitterContext);
 }
 
-// Use a full instance of the emitter with all of its methods.
+// Use data for the specific event emitted by the emitter
 function useEvent (event: string, defaultValue?: any, ...options: any) {
    const emitter: any = useContext(EmitterContext);
    const [data, setData] = useState(defaultValue);
@@ -27,15 +27,16 @@ function useEvent (event: string, defaultValue?: any, ...options: any) {
 }
 
 // Use data for the specific event emitted by the emitter only on the first dispatch
-useEvent.once = function (event: string, defaultValue?: any) {
+useEvent.once = function (event: string, defaultValue?: any, ...options: any) {
    const emitter: any = useContext(EmitterContext);
    const [data, setData] = useState(defaultValue);
+   const emit = (data: any, ...options: any) => emitter.emit(event, data, ...options);
 
    useEffect(() => {
-      emitter.once(event, setData);
+      emitter.once(event, setData, ...options);
    }, [event, defaultValue]);
 
-   return data;
+   return [data, emit];
 };
 
 export { EmitterProvider, useEmitter, useEvent };
