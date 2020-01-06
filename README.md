@@ -17,7 +17,7 @@ import React from 'react';
 
 import { EmitterProvider } from 'use-emitter';
 
-// import some kind of event emitter and
+// import some kind of event emitter
 import EventEmitter from 'events';
 const myEmitter = new EventEmitter();
 
