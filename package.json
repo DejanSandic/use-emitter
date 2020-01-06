@@ -13,7 +13,10 @@
 		"dev": "rollup --config --watch",
 		"lint:fix": "prettier-eslint \"src/*\" \"test/*\" --write"
 	},
-	"pre-commit": [ "test", "lint:fix" ],
+	"pre-commit": [
+		"test",
+		"lint:fix"
+	],
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/DejanSandic/use-emitter.git"
@@ -24,7 +27,16 @@
 		"url": "https://github.com/DejanSandic/use-emitter/issues"
 	},
 	"homepage": "https://github.com/DejanSandic/use-emitter#readme",
-	"keywords": [ "react", "use-emitter", "event", "events", "socket.io", "event emitter", "event-jet", "helper" ],
+	"keywords": [
+		"react",
+		"use-emitter",
+		"event",
+		"events",
+		"socket.io",
+		"event emitter",
+		"event-jet",
+		"helper"
+	],
 	"devDependencies": {
 		"@rollup/plugin-node-resolve": "^6.0.0",
 		"@testing-library/jest-dom": "^4.2.4",
@@ -44,6 +56,7 @@
 		"pre-commit": "^1.2.2",
 		"prettier-eslint": "^9.0.0",
 		"prettier-eslint-cli": "^5.0.0",
+		"react": "^16.12.0",
 		"react-dom": "^16.12.0",
 		"react-test-renderer": "^16.12.0",
 		"rimraf": "^2.6.3",
@@ -56,11 +69,10 @@
 		"ts-jest": "^24.0.2",
 		"typescript": "^3.5.3"
 	},
-	"peerDependencies": {},
+	"peerDependencies": {
+		"react": "^16.12.0"
+	},
 	"engines": {
 		"node": ">=8"
-	},
-	"dependencies": {
-		"react": "^16.12.0"
 	}
 }
